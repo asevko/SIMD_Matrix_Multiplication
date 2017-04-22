@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ОКМД</title>
+</head>
+<body>
+<header class="header">
+  <h1>
+    Реализация модели умножения матриц на ОКМД архитектуре
+  </h1>
+</header>
+<div>
+    <h3>A<sub>PxQ</sub></h3>
+</div>
+<div>
+    <h5>P = <input type="number" id="size_p" placeholder="столбцы матрицы А">
+        M = <input type="number" id="size_m" placeholder="Строки матриц А и B">
+        Q = <input type="number" id="size_q" placeholder="столбцов матрицы B"></h5>
+</div>
+    <script>
+        const LOW_LIMIT = -1;
+        const HIGH_LIMIT = 1;
+        const _P = 7, _M = 3, _Q = 7;
+        var A = [], B = [], C =[];
+        var isNegative = function() {
+            return Math.floor(Math.random() * 2) == 1;
+        };
+
+        var randomFloat = function(){
+            return parseFloat(LOW_LIMIT * Math.random().toFixed(4) * (isNegative() ? LOW_LIMIT : HIGH_LIMIT));
+        };
+
+        function createMatrix(row, col) {
+            var array = [];
+            for (var i = 0; i < row; i++) {
+                array[i] = [];
+                for (var j = 0; j < col; j++)
+                    array[i][j] = randomFloat();
+            }
+            return array;
+        }
+
+        function showMatrix(array, row, col) {
+            for (var i = 0; i < row; i++) {
+                for (var j = 0; j < col; j++)
+                    document.write(array[i][j] + " ");
+                document.write("</br>");
+            }
+        }
+        A = createMatrix(_P, _M);
+        B = createMatrix(_M, _Q);
+        showMatrix(A, _P, _M);
+            document.write("</br>");
+            document.write("</br>");
+        showMatrix(B, _M, _Q);
+            document.write("</br>");
+            document.write("</br>");
+        /**
+        * @return {number}
+        */
+        var SUM = function (i, j) {
+            var sum = 0;
+            for (var k = 0; k < _M; k++){
+                sum += (Math.pow(A[i][k], 2) > Math.abs(A[i][k] * B[k][j])) ?
+                    Math.pow(A[i][k], 2) - Math.abs(A[i][k] * B[k][j]) :
+                    (B[k][j] == 0 ?
+                        Math.pow(A[i][k], 2) :
+                        Math.pow(A[i][k], 2) / Math.abs(B[k][j]));
+            }
+            return sum;
+        };
+
+        var createMatrix_C = function(_P, _Q) {
+            for (var i = 0; i < _P; i++) {
+                C[i] = [];
+                for (var j = 0; j < _Q; j++)
+                    C[i][j] = SUM(i,j).toFixed(4);
+            }
+        };
+        createMatrix_C(_P, _Q);
+        showMatrix(C, _P, _Q);
+            document.write("</br>");
+            document.write("</br>");
+    </script>
+<h1>HELLO</h1>
+</body>
+</html>
