@@ -1,0 +1,44 @@
+#x {
+    position: relative;
+    bottom: 3px;
+}
+#task {
+    width: 770px; height: 110px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    display: inline-block;
+}
+#Dkij {
+    position: relative;
+    top: -20px;
+    left: 250px;
+}
+#input_m {
+    position: relative;
+    right: 2px;
+}
+#time_table {
+    position: relative;
+}
+#params {
+    position: relative;
+    top: -192px;
+    left: 250px;
+}
+#buttons {
+    position: relative;
+    top: -180px;
+    left: 265px;
+}
+#output {
+    position: relative;
+    top: -115px;
+}
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #000;
+    margin: 1em 0;
+    padding: 0;
+}

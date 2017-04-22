@@ -2,87 +2,89 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ОКМД</title>
+    <title>Вариант 3</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="generation.js"></script>
 </head>
 <body>
-<header class="header">
-  <h1>
-    Реализация модели умножения матриц на ОКМД архитектуре
-  </h1>
-</header>
-<div>
-    <h3>A<sub>PxQ</sub></h3>
+    <header class="header">
+      <h1>
+        Реализация модели умножения матриц на ОКМД архитектуре
+      </h1>
+    </header>
+    <div id="task">
+        <p>
+        <i><b>Дано:</b></i>
+            сгенерированые матрицы <b><i>A</i><sub>p<sub id="x">x</sub>m</sub></b>
+            и <b><i>В</i><sub>m<sub id="x">x</sub>q</sub></b>.
+        </p>
+        <p>
+            <i><b>Получить:</b></i>
+            получить матрицу <b><i>C</i><sub>p<sub id="x">x</sub>q</sub></b>.
+            <b><i>C</i><sub>ij</sub> = &sum;<sub>k</sub> d<sub>kij</sub></b>
+            <p id="Dkij">
+                <b>
+                    d<sub>kij</sub> = ((a<sub>ik</sub>)<sup>2</sup> &gt; |a<sub>ik</sub> - b<sub>kj</sub>|) ?
+                    (a<sub>ik</sub>)<sup>2</sup> - |a<sub>ik</sub> - b<sub>kj</sub>| :
+                    (b<sub>kj</sub> == 0 ? (a<sub>ik</sub>)<sup>2</sup> :
+                    (a<sub>ik</sub>)<sup>2</sup> &frasl; |b<sub>kj</sub>|)
+                </b>
+            </p>
+    </div>
+    <div id="time_table">
+        <table border="1" cellspacing="0">
+            <tr>
+                <th>Операция</th>
+                <th>Время выполнения</th>
+            </tr>
+            <tr>
+                <th>Сложение</th>
+                <th><label for="t_s"></label><input type="text" id="t_s" required></th>
+            </tr>
+            <tr>
+                <th>Разность</th>
+                <th><label for="t_r"></label><input type="text" id="t_r" required></th>
+            </tr>
+            <tr>
+                <th>Умножение</th>
+                <th><label for="t_y"></label><input type="text" id="t_y" required></th>
+            </tr>
+            <tr>
+                <th>Деление</th>
+                <th><label for="t_d"></label><input type="text" id="t_d" required></th>
+            </tr>
+            <tr>
+                <th>Сравнение</th>
+                <th><label for="t_c"></label><input type="text" id="t_c" required></th>
+            </tr>
+            <tr>
+                <th>Модуль</th>
+                <th><label for="t_m"></label><input type="text" id="t_m" required></th>
+            </tr>
+        </table>
+    </div>
+    <div id="params">
+        <table>
+            <tr>
+                <th>Размерности матриц</th>
+            </tr>
+            <tr>
+                <th>
+        p = <label for="size_p"></label><input type="text" id="size_p" required min="1"><br>
+            <div id="input_m">
+                m = <label for="size_m"></label><input type="text" id="size_m" required min="1">
+            </div>
+            q = <label for="size_q"></label><input type="text" id="size_q" required min="1">
+                </th>
+            </tr>
+        </table>
+    </div>
+    <div id="buttons">
+        <button type="submit" onclick="call()">Рассчиать</button>
+        <button type="reset">Очистить</button>
+    </div>
+<div id="output">
+    <hr />
 </div>
-<div>
-    <h5>P = <input type="number" id="size_p" placeholder="столбцы матрицы А">
-        M = <input type="number" id="size_m" placeholder="Строки матриц А и B">
-        Q = <input type="number" id="size_q" placeholder="столбцов матрицы B"></h5>
-</div>
-    <script>
-        const LOW_LIMIT = -1;
-        const HIGH_LIMIT = 1;
-        const _P = 7, _M = 3, _Q = 7;
-        var A = [], B = [], C =[];
-        var isNegative = function() {
-            return Math.floor(Math.random() * 2) == 1;
-        };
-
-        var randomFloat = function(){
-            return parseFloat(LOW_LIMIT * Math.random().toFixed(4) * (isNegative() ? LOW_LIMIT : HIGH_LIMIT));
-        };
-
-        function createMatrix(row, col) {
-            var array = [];
-            for (var i = 0; i < row; i++) {
-                array[i] = [];
-                for (var j = 0; j < col; j++)
-                    array[i][j] = randomFloat();
-            }
-            return array;
-        }
-
-        function showMatrix(array, row, col) {
-            for (var i = 0; i < row; i++) {
-                for (var j = 0; j < col; j++)
-                    document.write(array[i][j] + " ");
-                document.write("</br>");
-            }
-        }
-        A = createMatrix(_P, _M);
-        B = createMatrix(_M, _Q);
-        showMatrix(A, _P, _M);
-            document.write("</br>");
-            document.write("</br>");
-        showMatrix(B, _M, _Q);
-            document.write("</br>");
-            document.write("</br>");
-        /**
-        * @return {number}
-        */
-        var SUM = function (i, j) {
-            var sum = 0;
-            for (var k = 0; k < _M; k++){
-                sum += (Math.pow(A[i][k], 2) > Math.abs(A[i][k] * B[k][j])) ?
-                    Math.pow(A[i][k], 2) - Math.abs(A[i][k] * B[k][j]) :
-                    (B[k][j] == 0 ?
-                        Math.pow(A[i][k], 2) :
-                        Math.pow(A[i][k], 2) / Math.abs(B[k][j]));
-            }
-            return sum;
-        };
-
-        var createMatrix_C = function(_P, _Q) {
-            for (var i = 0; i < _P; i++) {
-                C[i] = [];
-                for (var j = 0; j < _Q; j++)
-                    C[i][j] = SUM(i,j).toFixed(4);
-            }
-        };
-        createMatrix_C(_P, _Q);
-        showMatrix(C, _P, _Q);
-            document.write("</br>");
-            document.write("</br>");
-    </script>
-<h1>HELLO</h1>
 </body>
 </html>
