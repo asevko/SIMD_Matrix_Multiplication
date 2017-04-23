@@ -31,14 +31,30 @@
     left: 265px;
 }
 #output {
+    align-content: center;
     position: relative;
     top: -115px;
 }
 hr {
+    position: relative;
+    top: -115px;
     display: block;
     height: 1px;
     border: 0;
     border-top: 1px solid #000;
     margin: 1em 0;
     padding: 0;
+}
+#graphics {
+    position: relative;
+    top: -100px;
+    width: 500px;
+    height: 350px;
+}
+#graphics1 {
+    position: relative;
+    top: -450px;
+    left: 500px;
+    width: 500px;
+    height: 350px;
 }

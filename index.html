@@ -5,6 +5,50 @@
     <title>Вариант 3</title>
     <link rel="stylesheet" href="style.css">
     <script src="generation.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load("visualization", "1", {packages:["linechart"]});
+        function drawChart() {
+            let statements = getStatements();
+            let DATA = [];
+            DATA[0] = ['Ранг задачи'];
+            for(let i = 0; i < statements.length; i++){
+                DATA[0].push('n = ' + statements[i][0].n);
+            }
+            console.log("data 0", DATA[0]);
+            let num = 1, k = 0;
+            for (let i = 0; i < statements[0].length; i++) {
+                let line = [];
+                //line.push(y.toString());
+                //line.push(statements[k][i].r.toString());
+                while (k < statements.length) {
+                    line.push(statements[k][i].Ky_r);
+                    k++;
+                }
+                DATA[num] = line;
+                if (i != statements[0].length - 1) {
+                    num++;
+                }
+                k = 0;
+            }
+            console.log(statements);
+            console.log(DATA);
+
+            let data = google.visualization.arrayToDataTable(DATA);
+            let chart = new google.visualization.LineChart(document.getElementById('graphics'));
+            chart.draw(data, {width: 500, height: 350, legend: 'right', title: 'Ky(r)'});
+
+//            let chart = new google.visualization.LineChart(document.getElementById('graphics'));
+//            chart.draw(data, {width: 500, height: 350, legend: 'bottom', title: 'Ky(r)'});
+//            chart = new google.visualization.LineChart(document.getElementById('graphics1'));
+//            chart.draw(data, {width: 500, height: 350, legend: 'bottom', title: 'Company Performance'});
+        }
+
+        $('html, .btn').click(function() {
+            drawChart();
+        });
+    </script>
 </head>
 <body>
     <header class="header">
@@ -80,11 +124,13 @@
         </table>
     </div>
     <div id="buttons">
-        <button type="submit" onclick="call()">Рассчиать</button>
-        <button type="reset">Очистить</button>
+        <button type="submit" onclick="run()" class="btn">Рассчиать</button>
+        <button type="reset" onclick="clean()">Очистить</button>
     </div>
-<div id="output">
     <hr />
-</div>
+<div id="output"></div>
+    <hr />
+<div id="graphics"></div>
+<div id="graphics1"></div>
 </body>
 </html>
