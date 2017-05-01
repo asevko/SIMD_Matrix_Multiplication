@@ -13,31 +13,43 @@
             let statements = getStatements();
             let DATA = [];
             DATA[0] = ['Ранг задачи'];
-            for(let i = 0; i < statements.length; i++){
-                DATA[0].push('n = ' + statements[i][0].n);
+            for(let i = 0; i < statements[0].length; i++){
+                DATA[0].push('r = ' + statements[0][i].r);
             }
             console.log("data 0", DATA[0]);
             let num = 1, k = 0;
-            for (let i = 0; i < statements[0].length; i++) {
-                let line = [];
-                //line.push(y.toString());
-                //line.push(statements[k][i].r.toString());
-                while (k < statements.length) {
-                    line.push(statements[k][i].Ky_r);
-                    k++;
+            for(let i = 0; i < statements.length; i++) {
+                let line =[];
+                for(let j = 0; j < statements[i].length; j++){
+                    if(j == 0)
+                        line.push(statements[i][j].n.toString());
+                    line.push(statements[i][j].Ky_r);
                 }
                 DATA[num] = line;
-                if (i != statements[0].length - 1) {
+                if (i != statements.length - 1) {
                     num++;
                 }
-                k = 0;
             }
+//            for (let i = 0; i < statements[0].length; i++) {
+//                let line = [];
+//                //line.push(y.toString());
+//                line.push(statements[0][i].r.toString());
+//                while (k < statements.length) {
+//                    line.push(statements[k][i].Ky_r);
+//                    k++;
+//                }
+//                DATA[num] = line;
+//                if (i != statements[0].length - 1) {
+//                    num++;
+//                }
+//                k = 0;
+//            }
             console.log(statements);
             console.log(DATA);
 
             let data = google.visualization.arrayToDataTable(DATA);
             let chart = new google.visualization.LineChart(document.getElementById('graphics'));
-            chart.draw(data, {width: 500, height: 350, legend: 'right', title: 'Ky(r)'});
+            chart.draw(data, {width: 500, height: 350, legend: 'right', title: 'Ky(n)'});
 
 //            let chart = new google.visualization.LineChart(document.getElementById('graphics'));
 //            chart.draw(data, {width: 500, height: 350, legend: 'bottom', title: 'Ky(r)'});

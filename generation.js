@@ -5,14 +5,6 @@ const LOW_LIMIT = -1;
 const HIGH_LIMIT = 1;
 let _P, _M, _Q;
 let A = [], B = [], C = [];
-let parallel_time = {
-    t_s: 1,
-    t_r: 1,
-    t_y: 1,
-    t_d: 1,
-    t_c: 1,
-    t_m: 1
-};
 let consecutive_time = {
     t_s: 1,
     t_r: 1,
@@ -23,11 +15,11 @@ let consecutive_time = {
     t_all: 6
 };
 let statement = {
-    time_c: 1,
-    time: 1,
-    n: 1,
-    r: 1,
-    Ky_r: 1
+    time_c: 0,
+    time: 0,
+    n: 0,
+    r: 0,
+    Ky_r: 0
 };
 let params = function() {
    return {
@@ -51,12 +43,6 @@ function run() {
     _M = parameters.m_size;
     _Q = parameters.q_size;
     _P = parameters.p_size;
-    parallel_time.t_s = parameters.t_s;
-    parallel_time.t_r = parameters.t_r;
-    parallel_time.t_y = parameters.t_y;
-    parallel_time.t_d = parameters.t_d;
-    parallel_time.t_c = parameters.t_c;
-    parallel_time.t_m = parameters.t_m;
     consecutive_time.t_s = parameters.t_s;
     consecutive_time.t_r = parameters.t_r;
     consecutive_time.t_y = parameters.t_y;
@@ -170,7 +156,6 @@ function call() {
     consecutive_time.t_all = consecutive_time.t_d + consecutive_time.t_y + consecutive_time.t_c
         + consecutive_time.t_s + consecutive_time.t_r + consecutive_time.t_m;
     console.log(consecutive_time);
-    statementGeneration();
 }
 
 function makeClone(obj) {
@@ -184,39 +169,4 @@ function makeClone(obj) {
         }
     }
     return clone;
-}
-let statements = [];
-function statementGeneration(){
-    let time_s = document.getElementById("t_s").value;
-    let validProcessingElements = findDividers();
-    let n = 0;
-    validProcessingElements.forEach(function (element) {
-        statements[n] = [];
-        for (let i = 1; i <= _M + 5; i+= 2) {
-            let state = makeClone(statement);
-            let all_time = (consecutive_time.t_all + _P * _Q  *time_s);
-            for (let k = 1; k <= element; k++){
-                all_time+= all_time;
-            }
-            state.time_c = all_time * i;
-            state.time = all_time  + (i - 1) * time_s;
-            state.n = element;
-            state.r = i;
-            state.Ky_r =state.time_c / state.time;
-            statements[n].push(state);
-        }
-        n++;
-    });
-}
-
-let findDividers = function () {
-    let dividers = [];
-    for (let i = 1; i <= _M; i++)
-        if (_M % i == 0)
-            dividers.push(i);
-    return dividers;
-};
-
-function getStatements() {
-    return statements;
 }
