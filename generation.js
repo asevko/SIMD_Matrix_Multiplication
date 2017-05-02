@@ -14,13 +14,6 @@ let consecutive_time = {
     t_m: 1,
     t_all: 6
 };
-let statement = {
-    time_c: 0,
-    time: 0,
-    n: 0,
-    r: 0,
-    Ky_r: 0
-};
 let params = function() {
    return {
        p_size: getInputParameter("size_p"),
@@ -68,7 +61,7 @@ function clean() {
 
 function getInputParameter(id) {
     if (+document.getElementById(id).value < 1 ||
-        typeof +document.getElementById(id).value != "number")
+        typeof +document.getElementById(id).value !== "number")
         throw new Error("Bad types");
     return parseInt(document.getElementById(id).value);
 }
@@ -76,7 +69,7 @@ function getInputParameter(id) {
 function call() {
     let output = document.getElementById("output");
     let isNegative = function () {
-        return Math.floor(Math.random() * 2) == 1;
+        return Math.floor(Math.random() * 2) === 1;
     };
 
     let randomFloat = function () {
