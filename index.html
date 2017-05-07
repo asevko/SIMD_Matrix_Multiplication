@@ -4,62 +4,309 @@
     <meta charset="UTF-8">
     <title>Вариант 3</title>
     <link rel="stylesheet" href="style.css">
-    <script src="generation.js"></script>
+    <!--<script src="generation.js"></script>-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/inputData.js"></script>
+    <script src="js/web.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-        google.charts.load("visualization", "1", {packages:["linechart"]});
-        function drawChart() {
-            let statements = getStatements();
-            let DATA = [];
-            DATA[0] = ['Ранг задачи'];
-            for(let i = 0; i < statements[0].length; i++){
-                DATA[0].push('r = ' + statements[0][i].r);
-            }
-            console.log("data 0", DATA[0]);
-            let num = 1, k = 0;
-            for(let i = 0; i < statements.length; i++) {
-                let line =[];
-                for(let j = 0; j < statements[i].length; j++){
-                    if(j == 0)
-                        line.push(statements[i][j].n.toString());
-                    line.push(statements[i][j].Ky_r);
-                }
-                DATA[num] = line;
-                if (i != statements.length - 1) {
-                    num++;
-                }
-            }
-//            for (let i = 0; i < statements[0].length; i++) {
-//                let line = [];
-//                //line.push(y.toString());
-//                line.push(statements[0][i].r.toString());
-//                while (k < statements.length) {
-//                    line.push(statements[k][i].Ky_r);
-//                    k++;
-//                }
-//                DATA[num] = line;
-//                if (i != statements[0].length - 1) {
-//                    num++;
-//                }
-//                k = 0;
-//            }
-            console.log(statements);
-            console.log(DATA);
+//        //google.charts.setOnLoadCallback(drawChart);
 
-            let data = google.visualization.arrayToDataTable(DATA);
-            let chart = new google.visualization.LineChart(document.getElementById('graphics'));
-            chart.draw(data, {width: 500, height: 350, legend: 'right', title: 'Ky(n)'});
-
-//            let chart = new google.visualization.LineChart(document.getElementById('graphics'));
-//            chart.draw(data, {width: 500, height: 350, legend: 'bottom', title: 'Ky(r)'});
-//            chart = new google.visualization.LineChart(document.getElementById('graphics1'));
-//            chart.draw(data, {width: 500, height: 350, legend: 'bottom', title: 'Company Performance'});
+//
+//        $('html, .btn, #start').click(function() {
+//            drawChart();
+//        });
+$(document).ready(function() {
+    google.charts.load('current', {'packages': ['line']});
+    p=parseInt($('#size_p').val());
+    m=parseInt($('#size_m').val());
+    q=parseInt($('#size_q').val());
+    compare = parseInt($('#t_c').val());
+    multi = parseInt($('#t_y').val());
+    addition = parseInt($('#t_s').val());
+    difference = parseInt($('#t_r').val());
+    div = parseInt($('#t_d').val());
+    abs = parseInt($('#t_m').val());
+    function drawChart() {
+        let data = new google.visualization.DataTable();
+        data.addColumn('number', 'Количество процессорных элементов n');
+        addCol('r = ', 20);
+        function addCol(str, n) {
+            for (let i = 1; i <= n; i++)
+                data.addColumn('number', (str + i).toString());
         }
 
-        $('html, .btn').click(function() {
-            drawChart();
-        });
+        let ROWS = [];
+        addRows(20, 25);
+        function addRows(n, r) {
+            for (let i = 1; i <= r; i++) {
+                let row = [i];
+                for (let k = 1; k <= n; k++) {
+                    row.push(computeKy(i, p, k, q))
+                }
+                ROWS.push(row);
+            }
+        }
+
+        function computeKy(n, p, m, q) {
+            return timeCounting(1, p, m, q) / timeCounting(n, p, m, q);
+        }
+
+        console.log(ROWS);
+        data.addRows(ROWS);
+
+        let options = {
+            chart: {
+                title: 'Коэффициент усорения Ky',
+                subtitle: 'от количества процессорных элементов n'
+            },
+            legend: {
+                position: 'right',
+                textStyle: {
+                    fontSize: 10
+                }
+            },
+            width: 1100,
+            height: 700
+        };
+
+        let chart = new google.charts.Line(document.getElementById('table-1'));
+        chart.draw(data, google.charts.Line.convertOptions(options));
+
+    }
+
+    function drawer() {
+        let data = new google.visualization.DataTable();
+        data.addColumn('number', 'Ранг задачи r');
+        function addCol(str, n) {
+            for (let i = 1; i <= n; i++)
+                data.addColumn('number', (str + i).toString());
+        }
+
+        addCol('n = ', 25);
+        let ROWS = [];
+
+        function addRows(n, r) {
+            for (let i = 1; i <= r; i++) {
+                let row = [i];
+                for (let k = 1; k <= n; k++) {
+                    row.push(computeKy(k, p, i, q))
+                }
+                ROWS.push(row);
+            }
+        }
+
+        function computeKy(n, p, m, q) {
+            return timeCounting(1, p, m, q) / timeCounting(n, p, m, q);
+        }
+
+        addRows(25, 30);
+        data.addRows(ROWS);
+        let options = {
+            chart: {
+                title: 'Коэффициент усорения Ky',
+                subtitle: 'от ранга задачи r'
+            },
+            legend: {
+                position: 'right',
+                textStyle: {
+                    fontSize: 10
+                }
+            },
+            width: 1100,
+            height: 700
+        };
+
+        let chart = new google.charts.Line(document.getElementById('table-2'));
+        chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+
+    function drawChartE() {
+        let data = new google.visualization.DataTable();
+        data.addColumn('number', 'Количество процессорных элементов n');
+        addCol('r = ', 20);
+        function addCol(str, n) {
+            for (let i = 1; i <= n; i++)
+                data.addColumn('number', (str + i).toString());
+        }
+
+        let ROWS = [];
+        addRows(20, 25);
+        function addRows(n, r) {
+            for (let i = 1; i <= r; i++) {
+                let row = [i];
+                for (let k = 1; k <= n; k++) {
+                    row.push(computeKy(i, p, k, q) / k);
+                }
+                ROWS.push(row);
+            }
+        }
+
+        function computeKy(n, p, m, q) {
+            return timeCounting(1, p, m, q) / timeCounting(n, p, m, q);
+        }
+
+        console.log(ROWS);
+        data.addRows(ROWS);
+
+        let options = {
+            chart: {
+                title: 'Эффективность е',
+                subtitle: 'от количества процессорных элементов n'
+            },
+            legend: {
+                position: 'right',
+                textStyle: {
+                    fontSize: 10
+                }
+            },
+            width: 1100,
+            height: 700
+        };
+
+        let chart = new google.charts.Line(document.getElementById('table-3'));
+        chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+
+    function drawerE() {
+        let data = new google.visualization.DataTable();
+        data.addColumn('number', 'Ранг задачи r');
+        function addCol(str, n) {
+            for (let i = 1; i <= n; i++)
+                data.addColumn('number', (str + i).toString());
+        }
+
+        addCol('n = ', 25);
+        let ROWS = [];
+
+        function addRows(n, r) {
+            for (let i = 1; i <= r; i++) {
+                let row = [i];
+                for (let k = 1; k <= n; k++) {
+                    row.push(computeKy(k, p, i, q) / k)
+                }
+                ROWS.push(row);
+            }
+        }
+
+        function computeKy(n, p, m, q) {
+            return timeCounting(1, p, m, q) / timeCounting(n, p, m, q);
+        }
+
+        addRows(25, 30);
+        data.addRows(ROWS);
+        let options = {
+            chart: {
+                title: 'Эффективность е',
+                subtitle: 'от ранга задачи r'
+            },
+            legend: {
+                position: 'right',
+                textStyle: {
+                    fontSize: 10
+                }
+            },
+            width: 1100,
+            height: 700
+        };
+
+        let chart = new google.charts.Line(document.getElementById('table-4'));
+        chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+
+    function drawChartD() {
+        let data = new google.visualization.DataTable();
+        data.addColumn('number', 'Количество процессорных элементов n');
+        addCol('r = ', 20);
+        function addCol(str, n) {
+            for (let i = 1; i <= n; i++)
+                data.addColumn('number', (str + i).toString());
+        }
+
+        let ROWS = [];
+        addRows(20, 25);
+        function addRows(n, r) {
+            for (let i = 1; i <= r; i++) {
+                let row = [i];
+                for (let k = 1; k <= n; k++) {
+                    row.push(D(i, p, k, q));
+                }
+                ROWS.push(row);
+            }
+        }
+
+        data.addRows(ROWS);
+
+        let options = {
+            chart: {
+                title: 'Коэффициент расхождения программы D',
+                subtitle: 'от количества процессорных элементов n'
+            },
+            legend: {
+                position: 'right',
+                textStyle: {
+                    fontSize: 10
+                }
+            },
+            width: 1100,
+            height: 700
+        };
+
+        let chart = new google.charts.Line(document.getElementById('table-5'));
+        chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+
+    function drawerD() {
+        let data = new google.visualization.DataTable();
+        data.addColumn('number', 'Ранг задачи r');
+        function addCol(str, n) {
+            for (let i = 1; i <= n; i++)
+                data.addColumn('number', (str + i).toString());
+        }
+
+        addCol('n = ', 25);
+        let ROWS = [];
+
+        function addRows(n, r) {
+            for (let i = 1; i <= r; i++) {
+                let row = [i];
+                for (let k = 1; k <= n; k++) {
+                    row.push(D(k, p, i, q))
+                }
+                ROWS.push(row);
+            }
+        }
+
+        addRows(25, 30);
+        data.addRows(ROWS);
+        let options = {
+            chart: {
+                title: 'Коэффициент расъождения прогрммы D',
+                subtitle: 'от ранга задачи r'
+            },
+            legend: {
+                position: 'right',
+                textStyle: {
+                    fontSize: 10
+                }
+            },
+            width: 1100,
+            height: 700
+        };
+
+        let chart = new google.charts.Line(document.getElementById('table-6'));
+        chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+
+    $('#clean').click(function () {
+        drawChart();
+        drawer();
+        drawChartE();
+        drawerE();
+        drawChartD();
+        drawerD()
+    });
+});
     </script>
 </head>
 <body>
@@ -83,7 +330,7 @@
                     d<sub>kij</sub> = ((a<sub>ik</sub>)<sup>2</sup> &gt; |a<sub>ik</sub> - b<sub>kj</sub>|) ?
                     (a<sub>ik</sub>)<sup>2</sup> - |a<sub>ik</sub> - b<sub>kj</sub>| :
                     (b<sub>kj</sub> == 0 ? (a<sub>ik</sub>)<sup>2</sup> :
-                    (a<sub>ik</sub>)<sup>2</sup> &frasl; |b<sub>kj</sub>|)
+                    (a<sub>ik</sub>)<sup>2</sup> &frasl; |b<sub>kj</sub>|))
                 </b>
             </p>
     </div>
@@ -131,18 +378,23 @@
                 m = <label for="size_m"></label><input type="text" id="size_m" required min="1">
             </div>
             q = <label for="size_q"></label><input type="text" id="size_q" required min="1">
+                    <Br>
+                    n = <label for="n"></label><input type="text" id="n" required min="1">
                 </th>
             </tr>
         </table>
     </div>
     <div id="buttons">
-        <button type="submit" onclick="run()" class="btn">Рассчиать</button>
-        <button type="reset" onclick="clean()">Очистить</button>
+        <button type="submit" class="btn" id="start">Рассчиать</button>
+        <button type="reset" id="clean">Графики</button>
     </div>
     <hr />
 <div id="output"></div>
-    <hr />
-<div id="graphics"></div>
-<div id="graphics1"></div>
+<div id="table-1"></div>
+<div id="table-2"></div>
+<div id="table-3"></div>
+<div id="table-4"></div>
+<div id="table-5"></div>
+<div id="table-6"></div>
 </body>
 </html>

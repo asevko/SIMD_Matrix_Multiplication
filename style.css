@@ -17,18 +17,22 @@
     position: relative;
     right: 2px;
 }
+#size_q {
+    position: relative;
+    left: 2px;
+}
 #time_table {
     position: relative;
 }
 #params {
     position: relative;
-    top: -192px;
-    left: 250px;
+    top: -173px;
+    left: 300px;
 }
 #buttons {
     position: relative;
-    top: -180px;
-    left: 265px;
+    top: -168px;
+    left: 300px;
 }
 #output {
     align-content: center;
@@ -57,4 +61,7 @@ hr {
     left: 500px;
     width: 500px;
     height: 350px;
+}
+table, th, td {
+    border: 1px solid black;
 }
