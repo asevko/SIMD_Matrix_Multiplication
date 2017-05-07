@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36d718c0-00f4-4dc5-9e36-f65194b1fa73" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/web.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/generation.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/graphics.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/logicModel.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/inputData.js" afterPath="$PROJECT_DIR$/js/inputData.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/web.js" afterPath="$PROJECT_DIR$/js/web.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style.css" afterPath="$PROJECT_DIR$/style.css" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -33,28 +30,28 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="12" column="43" lean-forward="false" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
+            <state relative-caret-position="103">
+              <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="web.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="web.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/web.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+            <state relative-caret-position="72">
+              <caret line="25" column="40" lean-forward="false" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inputData.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="inputData.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/inputData.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="648">
-              <caret line="56" column="44" lean-forward="false" selection-start-line="56" selection-start-column="44" selection-end-line="56" selection-end-column="44" />
+            <state relative-caret-position="486">
+              <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
               <folding>
                 <element signature="n#!!block;n#viewMatrix#0" expanded="false" />
               </folding>
@@ -98,11 +95,11 @@
       <list>
         <option value="$PROJECT_DIR$/graphics.js" />
         <option value="$PROJECT_DIR$/generation.js" />
-        <option value="$PROJECT_DIR$/style.css" />
         <option value="$PROJECT_DIR$/js/logicModel.js" />
         <option value="$PROJECT_DIR$/js/inputData.js" />
-        <option value="$PROJECT_DIR$/js/web.js" />
+        <option value="$PROJECT_DIR$/style.css" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/web.js" />
       </list>
     </option>
   </component>
@@ -320,7 +317,7 @@
       <workItem from="1493911249647" duration="12307000" />
       <workItem from="1494063356274" duration="3754000" />
       <workItem from="1494093916786" duration="2939000" />
-      <workItem from="1494162068831" duration="2973000" />
+      <workItem from="1494162068831" duration="15008000" />
     </task>
     <task id="LOCAL-00001" summary="time &amp; graph">
       <created>1492981912554</created>
@@ -343,11 +340,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493750674711</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="correct time">
+      <created>1494165066687</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1494165066687</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89361000" />
+    <option name="totallyTimeSpent" value="101396000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -408,7 +412,8 @@
     <MESSAGE value="time &amp; graph" />
     <MESSAGE value="new generation" />
     <MESSAGE value="non return point" />
-    <option name="LAST_COMMIT_MESSAGE" value="non return point" />
+    <MESSAGE value="correct time" />
+    <option name="LAST_COMMIT_MESSAGE" value="correct time" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -731,14 +736,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="62" column="1" lean-forward="false" selection-start-line="62" selection-start-column="1" selection-end-line="62" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/graphics.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -763,29 +760,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/inputData.js">
+    <entry file="file://$PROJECT_DIR$/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="56" column="44" lean-forward="false" selection-start-line="56" selection-start-column="44" selection-end-line="56" selection-end-column="44" />
-          <folding>
-            <element signature="n#!!block;n#viewMatrix#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="12" column="43" lean-forward="false" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
+        <state relative-caret-position="254">
+          <caret line="21" column="11" lean-forward="false" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/web.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+        <state relative-caret-position="72">
+          <caret line="25" column="40" lean-forward="false" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/inputData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!block;n#viewMatrix#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -7,6 +7,8 @@ let compare = 1,
     difference = 1,
     div = 1,
     abs = 1;
+let T1;
+let Ky = 0;
 const LOW_LIMIT = -1;
 const HIGH_LIMIT = 1;
 
@@ -61,13 +63,9 @@ function result() {
 
 function computeElement(i, j, n) {
     let sum = 0;
-    let N = Math.ceil(m / n);
     for (let k = 0; k < m; k++){
         sum += f(i, j, k);
     }
-    time += fTime() * N;
-    console.log(fTime());
-    time += Math.ceil((m - 1) / n ) * parseInt(addition);
     return parseFloat(sum.toFixed(4));
 }
 
@@ -75,6 +73,14 @@ function f(i, j, k) {
     let a = Math.pow(A[i][k], 2);
     let b = Math.abs(A[i][k] * B[k][j]);
     return (a > b ? a - b : (B[k][j] === 0 ? a : a / Math.abs(B[k][j])));
+}
+
+function timeCounting(n, p, m, q) {
+    let t = 0;
+    let N = Math.ceil(m / n);
+    t += fTime() * N;
+    t += Math.ceil((m - 1) / n ) * parseInt(addition);
+    return t * p * q;
 }
 
 let fTime = function(){

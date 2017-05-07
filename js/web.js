@@ -18,18 +18,21 @@ $(document).ready(function(){
         q=$('#size_q').val();
         n=parseInt($('#n').val());
 
-        compare = $('#t_c').val();
-        multi = $('#t_y').val();
-        addition = $('#t_s').val();
-        difference = $('#t_r').val();
-        div = $('#t_d').val();
-        abs = $('#t_m').val();
-        time = 0;
+        compare = parseInt($('#t_c').val());
+        multi = parseInt($('#t_y').val());
+        addition = parseInt($('#t_s').val());
+        difference = parseInt($('#t_r').val());
+        div = parseInt($('#t_d').val());
+        abs = parseInt($('#t_m').val());
+
 
         A=generateMatrix(p,m);
         B=generateMatrix(m,q);
 
         result();
+        time = timeCounting(n, parseInt(p), parseInt(m), parseInt(q));
+        T1 = timeCounting(1, parseInt(p), parseInt(m), parseInt(q));
+        Ky = T1 / time;
 
         $(document.body).append('<div id="A">A:</div>');
         viewMatrix(A);
@@ -38,19 +41,20 @@ $(document).ready(function(){
         $(document.body).append('<div id="C">C:</div>');
         viewMatrix(C);
 
-        $("#output").text("Время выполнения: "+time);
+        $("#output").text("Время выполнения: "+time + "    Ky: " + Ky.toFixed(4));
     });
 
-    $('#clean').click(function () {
-        $('#t').remove();
-        $('#t').remove();
-        $('#t').remove();
-        $('#A').remove();
-        $('#B').remove();
-        $('#C').remove();
-
-        $("input").remove('keyup', function(){
-            $(this).val($(this).val().replace (/\D/, ''));
-        });
-    });
+    // $('#clean').click(function () {
+    //     $('#t').remove();
+    //     $('#t').remove();
+    //     $('#t').remove();
+    //     $('#A').remove();
+    //     $('#B').remove();
+    //     $('#C').remove();
+    //     $('#table').remove();
+    //
+    //     $("input").remove('keyup', function(){
+    //         $(this).val($(this).val().replace (/\D/, ''));
+    //     });
+    // });
 });
