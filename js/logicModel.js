@@ -1,2 +1,0 @@
-InitialState.init();
-InitialState.generateInputMatrix();

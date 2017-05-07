@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <title>Вариант 3</title>
     <link rel="stylesheet" href="style.css">
-    <script src="generation.js"></script>
+    <!--<script src="generation.js"></script>-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="js/inputData.js"></script>
+    <script src="js/web.js"></script>
     <script type="text/javascript">
 //        google.charts.load("visualization", "1", {packages:["linechart"]});
 //        function drawChart() {
@@ -83,7 +85,7 @@
                     d<sub>kij</sub> = ((a<sub>ik</sub>)<sup>2</sup> &gt; |a<sub>ik</sub> - b<sub>kj</sub>|) ?
                     (a<sub>ik</sub>)<sup>2</sup> - |a<sub>ik</sub> - b<sub>kj</sub>| :
                     (b<sub>kj</sub> == 0 ? (a<sub>ik</sub>)<sup>2</sup> :
-                    (a<sub>ik</sub>)<sup>2</sup> &frasl; |b<sub>kj</sub>|)
+                    (a<sub>ik</sub>)<sup>2</sup> &frasl; |b<sub>kj</sub>|))
                 </b>
             </p>
     </div>
@@ -131,18 +133,18 @@
                 m = <label for="size_m"></label><input type="text" id="size_m" required min="1">
             </div>
             q = <label for="size_q"></label><input type="text" id="size_q" required min="1">
+                    <Br>
+                    n = <label for="n"></label><input type="text" id="n" required min="1">
                 </th>
             </tr>
         </table>
     </div>
     <div id="buttons">
-        <button type="submit" onclick="run()" class="btn">Рассчиать</button>
-        <button type="reset" onclick="clean()">Очистить</button>
+        <button type="submit" class="btn" id="start">Рассчиать</button>
+        <button type="reset" id="clean">Очистить</button>
     </div>
     <hr />
 <div id="output"></div>
-    <hr />
-<div id="graphics"></div>
-<div id="graphics1"></div>
+
 </body>
 </html>
