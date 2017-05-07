@@ -214,11 +214,97 @@ $(document).ready(function() {
         chart.draw(data, google.charts.Line.convertOptions(options));
     }
 
+    function drawChartD() {
+        let data = new google.visualization.DataTable();
+        data.addColumn('number', 'Количество процессорных элементов n');
+        addCol('r = ', 20);
+        function addCol(str, n) {
+            for (let i = 1; i <= n; i++)
+                data.addColumn('number', (str + i).toString());
+        }
+
+        let ROWS = [];
+        addRows(20, 25);
+        function addRows(n, r) {
+            for (let i = 1; i <= r; i++) {
+                let row = [i];
+                for (let k = 1; k <= n; k++) {
+                    row.push(D(i, p, k, q));
+                }
+                ROWS.push(row);
+            }
+        }
+
+        data.addRows(ROWS);
+
+        let options = {
+            chart: {
+                title: 'Коэффициент расхождения программы D',
+                subtitle: 'от количества процессорных элементов n'
+            },
+            legend: {
+                position: 'right',
+                textStyle: {
+                    fontSize: 10
+                }
+            },
+            width: 1100,
+            height: 700
+        };
+
+        let chart = new google.charts.Line(document.getElementById('table-5'));
+        chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+
+    function drawerD() {
+        let data = new google.visualization.DataTable();
+        data.addColumn('number', 'Ранг задачи r');
+        function addCol(str, n) {
+            for (let i = 1; i <= n; i++)
+                data.addColumn('number', (str + i).toString());
+        }
+
+        addCol('n = ', 25);
+        let ROWS = [];
+
+        function addRows(n, r) {
+            for (let i = 1; i <= r; i++) {
+                let row = [i];
+                for (let k = 1; k <= n; k++) {
+                    row.push(D(k, p, i, q))
+                }
+                ROWS.push(row);
+            }
+        }
+
+        addRows(25, 30);
+        data.addRows(ROWS);
+        let options = {
+            chart: {
+                title: 'Коэффициент расъождения прогрммы D',
+                subtitle: 'от ранга задачи r'
+            },
+            legend: {
+                position: 'right',
+                textStyle: {
+                    fontSize: 10
+                }
+            },
+            width: 1100,
+            height: 700
+        };
+
+        let chart = new google.charts.Line(document.getElementById('table-6'));
+        chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+
     $('#clean').click(function () {
         drawChart();
         drawer();
         drawChartE();
         drawerE();
+        drawChartD();
+        drawerD()
     });
 });
     </script>
@@ -308,5 +394,7 @@ $(document).ready(function() {
 <div id="table-2"></div>
 <div id="table-3"></div>
 <div id="table-4"></div>
+<div id="table-5"></div>
+<div id="table-6"></div>
 </body>
 </html>

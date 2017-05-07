@@ -41,7 +41,9 @@ $(document).ready(function(){
         $(document.body).append('<div id="C">C:</div>');
         viewMatrix(C);
 
-        $("#output").text("Время выполнения: "+time + "    Ky: " + Ky.toFixed(4));
+        $("#output").text("Время выполнения: "+time + "    Ky: " +
+            Ky.toFixed(4) + "    e: " + (Ky / n).toFixed(4) +
+            "   D: " + D(n, parseInt(p), parseInt(m), parseInt(q)).toFixed(4));
     });
 
     // $('#clean').click(function () {

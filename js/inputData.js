@@ -87,3 +87,36 @@ let fTime = function(){
     return parseInt(multi) * 2 + parseInt(abs) * 2 +
         parseInt(compare) * 2 + parseInt(div) + parseInt(difference);
 };
+
+/**
+ * @return {number}
+ */
+function D(n, p, m, q) {
+    return Lsum(n, p, m, q) / Lavg(n, p, m, q);
+}
+
+/**
+ * @return {number}
+ */
+let Lsum = function (n, p, m, q) {
+    let d = 0;
+    let Nf = Math.ceil(m / n);
+    d += Nf * fTime();
+    d += Math.ceil((m - 1) / n ) * parseInt(addition);
+    return d * p * q;
+};
+
+/**
+ * @return {number}
+ */
+let Lavg = function (n, p, m, q) {
+    let d = 0;
+    let Nf = Math.floor(m / n);
+    d += n * Nf *fTime();
+    d += fTime() * (m  - Nf * n);
+    let Nt = Math.floor((m - 1) / n);
+    d += Nt * parseInt(addition);
+    d+= parseInt(addition) * (m  - Nt * n);
+    return 1/m * (d * p * q);
+};
+
