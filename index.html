@@ -100,7 +100,7 @@ $(document).ready(function() {
             return timeCounting(1, p, m, q) / timeCounting(n, p, m, q);
         }
 
-        addRows(25, 30);
+        addRows(25, 120);
         data.addRows(ROWS);
         let options = {
             chart: {
@@ -131,12 +131,12 @@ $(document).ready(function() {
         }
 
         let ROWS = [];
-        addRows(20, 25);
+        addRows(20, 120);
         function addRows(n, r) {
             for (let i = 1; i <= r; i++) {
                 let row = [i];
                 for (let k = 1; k <= n; k++) {
-                    row.push(computeKy(i, p, k, q) / k);
+                    row.push(computeKy(i, p, k, q) / i);
                 }
                 ROWS.push(row);
             }
@@ -183,7 +183,7 @@ $(document).ready(function() {
             for (let i = 1; i <= r; i++) {
                 let row = [i];
                 for (let k = 1; k <= n; k++) {
-                    row.push(computeKy(k, p, i, q) / k)
+                    row.push(computeKy(k, p, i, q) / i)
                 }
                 ROWS.push(row);
             }
@@ -193,7 +193,7 @@ $(document).ready(function() {
             return timeCounting(1, p, m, q) / timeCounting(n, p, m, q);
         }
 
-        addRows(25, 30);
+        addRows(25, 120);
         data.addRows(ROWS);
         let options = {
             chart: {
@@ -277,11 +277,11 @@ $(document).ready(function() {
             }
         }
 
-        addRows(25, 30);
+        addRows(25, 90);
         data.addRows(ROWS);
         let options = {
             chart: {
-                title: 'Коэффициент расъождения прогрммы D',
+                title: 'Коэффициент расxождения прогрммы D',
                 subtitle: 'от ранга задачи r'
             },
             legend: {
